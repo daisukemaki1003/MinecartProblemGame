@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screen/game_main.dart';
+import 'widget_test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,8 +35,14 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(color: Colors.red),
           ),
           onPressed: () async {
-            await Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => GameMainScreen()));
+            await Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (context) {
+              if (true) {
+                return GameMainScreen();
+              } else {
+                return TestScreen();
+              }
+            }));
           },
         ),
       ),

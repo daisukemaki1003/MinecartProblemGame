@@ -40,6 +40,10 @@ class MyGameMain extends FlameGame
 
   @override
   Future<void>? onLoad() async {
+    // マップ
+    mapChip = MapChip("test.tmx", mySpriteSize);
+    add(mapChip!);
+
     // プレイヤー初期化
     playerSprite = MySprite("character/sample011.png", mySpriteSize);
     add(playerSprite!);
@@ -56,10 +60,6 @@ class MyGameMain extends FlameGame
         backgroundPaint: BasicPalette.white.withAlpha(100).paint(),
         margin: const EdgeInsets.only(left: 40.0, bottom: 40.0));
     add(myJoystickController!);
-
-    // マップ
-    mapChip = MapChip("test.tmx", mySpriteSize);
-    add(mapChip!);
 
     await super.onLoad();
   }

@@ -11,9 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  frame: ^1.0.2
   cupertino_icons: ^1.0.2
-  flame: ^1.2.1
+  flame: ^1.3.0
+  tiled: 0.8.4
   flame_tiled: ^1.7.2
 
 dev_dependencies:
@@ -27,9 +27,12 @@ flutter:
 
   assets:
     - assets/images/character/
+    - assets/tiles/test.tmx
     - assets/images/tiles/未整理チップ1.png
     - assets/images/tiles/未整理チップ2.png
     - assets/tiles/未整理チップ1.tsx
     - assets/tiles/未整理チップ2.tsx
+
+    - assets/tiles/map.tmx
 
 

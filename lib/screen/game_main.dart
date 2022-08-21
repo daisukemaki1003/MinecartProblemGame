@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
+<<<<<<< Updated upstream
+=======
+import '../common_system.dart';
+import '../gloabal.dart';
+>>>>>>> Stashed changes
 import '../widget/joystick_controller.dart';
+import '../widget/map_chip.dart';
 
 class GameMainScreen extends StatefulWidget {
   GameMainScreen({Key? key}) : super(key: key);
@@ -29,14 +35,31 @@ class MyGameMain extends FlameGame
 
   MySprite? playerSprite;
   MyJoystickController? myJoystickController;
+
+  // マップ
+  MapChip? mapChip;
+
   MyGameMain() : super();
 
   @override
   Future<void>? onLoad() async {
+<<<<<<< Updated upstream
     playerSprite = MySprite("character/sample011.png", Vector2(32.0, 32.0));
     add(playerSprite!);
     playerSprite!.GetPos(Vector2(100, 100));
+=======
+    // プレイヤー初期化
+    playerSprite = MySprite("character/sample011.png", mySpriteSize);
+    add(playerSprite!);
+    playerSprite!.SetPos(Vector2(100, 100));
 
+    // プレイヤー初期化
+    otherSprite = MySprite("character/player2.png", mySpriteSize);
+    add(otherSprite!);
+    otherSprite!.SetPos(Vector2(200, 100));
+>>>>>>> Stashed changes
+
+    // コントーローラー
     myJoystickController = MyJoystickController(
         knobRadius: 30.0,
         knobPaint: BasicPalette.white.withAlpha(200).paint(),
@@ -45,13 +68,12 @@ class MyGameMain extends FlameGame
         margin: const EdgeInsets.only(left: 40.0, bottom: 40.0));
     add(myJoystickController!);
 
+    // マップ
+    mapChip = MapChip("", "test.tmx", mySpriteSize);
+    add(mapChip!);
+
     await super.onLoad();
   }
-
-  // @override
-  // void render(Canvas canvas) {
-  //   canvas.drawRect(size.toRect(), BasicPalette.white.paint());
-  // }
 
   @override
   void update(double dt) {

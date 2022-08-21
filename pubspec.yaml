@@ -16,6 +16,7 @@ dependencies:
   tiled: 0.8.4
   flame_tiled: ^1.7.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -33,6 +34,5 @@ flutter:
     - assets/tiles/未整理チップ1.tsx
     - assets/tiles/未整理チップ2.tsx
 
-    - assets/tiles/map.tmx
 
 

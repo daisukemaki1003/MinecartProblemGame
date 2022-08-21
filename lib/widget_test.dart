@@ -4,6 +4,13 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart' hide Image, Draggable;
 
+class TestScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GameWidget(game: CirclesExample());
+  }
+}
+
 class CirclesExample extends FlameGame with HasCollisionDetection, TapDetector {
   static const description = '''
     This example will create a circle every time you tap on the screen. It will
@@ -53,6 +60,15 @@ class MyCollidable extends PositionComponent
   void update(double dt) {
     super.update(dt);
     position.add(velocity * dt);
+  }
+
+  /// 当たり判定コールバック
+  /// [intersectionPoints] 接触箇所
+  /// [other] 衝突した相手のオブジェクト
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollision(intersectionPoints, other);
+    print("object");
   }
 
   @override

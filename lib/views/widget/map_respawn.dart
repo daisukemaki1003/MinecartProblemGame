@@ -8,7 +8,8 @@ import 'package:flame/palette.dart';
 
 import '../../gloabal.dart';
 
-class MapRespawnObject extends PositionComponent with HasGameRef, CollisionCallbacks {
+class MapRespawnObject extends PositionComponent
+    with HasGameRef, CollisionCallbacks {
   // マップタイル
   TiledComponent mapComponent;
   FlagModel flag;
@@ -17,8 +18,8 @@ class MapRespawnObject extends PositionComponent with HasGameRef, CollisionCallb
 
   @override
   Future<void>? onLoad() async {
-    // ドア
-    final objGroup = mapComponent.tileMap.getLayer<ObjectGroup>('door_event');
+    // リスポーンオブジェクト
+    final objGroup = mapComponent.tileMap.getLayer<ObjectGroup>(respoawnObj);
     for (var obj in objGroup!.objects) {
       // ヒットボックス
       RectangleHitbox rectangleHitbox = RectangleHitbox(
@@ -40,11 +41,12 @@ class MapRespawnObject extends PositionComponent with HasGameRef, CollisionCallb
       Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     print("フラグ書き換え");
-    flag.testFlag = true;
+    flag.testFlag = !flag.testFlag;
   }
 }
 
-class MapRespawnPoint extends PositionComponent with HasGameRef, CollisionCallbacks {
+class MapRespawnPoint extends PositionComponent
+    with HasGameRef, CollisionCallbacks {
   // マップタイル
   TiledComponent mapComponent;
   // リスポーン
@@ -55,8 +57,7 @@ class MapRespawnPoint extends PositionComponent with HasGameRef, CollisionCallba
   @override
   Future<void>? onLoad() async {
     // リスポーン
-    final objGroup = mapComponent.tileMap.getLayer<ObjectGroup>('respawn');
+    final objGroup = mapComponent.tileMap.getLayer<ObjectGroup>(respoawnPoint);
     point = Vector2(objGroup!.objects[0].x, objGroup.objects[0].y);
-    print(point);
   }
 }

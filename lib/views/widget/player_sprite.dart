@@ -67,7 +67,6 @@ class PlayerSprite extends SpriteAnimationComponent
     }
     add(hitBox);
 
-    print("Load image : $imagePath");
     await super.onLoad();
   }
 

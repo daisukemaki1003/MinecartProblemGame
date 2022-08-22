@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="4">
+ <tileset firstgid="1" source="pipo-map001_at-umi.tsx"/>
+ <tileset firstgid="6" source="pipo-map001.tsx"/>
+ <tileset firstgid="94" source="city.tsx"/>
+ <layer id="1" name="ground" width="10" height="10">
+  <data encoding="csv">
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,94,94,94,94,94,5,5,
+5,5,5,94,94,94,94,94,5,5,
+5,5,5,94,94,94,94,94,5,5,
+5,5,5,94,94,94,94,94,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5
+</data>
+ </layer>
+ <layer id="2" name="cityscape" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,111,0,0,0,0,
+0,0,0,0,0,111,0,0,0,0,
+0,0,0,0,0,111,0,0,0,0,
+0,0,0,0,0,119,0,0,0,0,
+0,0,0,0,0,164,0,0,0,0,
+0,0,0,0,0,172,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="collision" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,98,98,98,0,98,98,98,0,
+0,0,98,0,0,0,0,0,98,0,
+0,0,98,0,0,0,0,0,98,0,
+0,0,98,0,0,0,0,0,98,0,
+0,0,98,0,0,0,0,0,98,0,
+0,0,98,98,98,98,98,98,98,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="5" name="respawn_obj">
+  <object id="1" x="160" y="128" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup id="7" name="respawn_point">
+  <object id="3" x="160" y="95" width="32" height="32"/>
+ </objectgroup>
+</map>

@@ -1,5 +1,3 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
@@ -11,41 +9,30 @@ import '../widget/joystick_controller.dart';
 import '../widget/map_chip.dart';
 import '../widget/player_sprite.dart';
 
-class GameMainScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GameWidget(game: MyGameMain());
-  }
-}
-
-class MyGameMain extends FlameGame
+class CityScreen extends FlameGame
     with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
   // プレイヤー
   PlayerSprite? playerSprite;
-
   // コントローラー
   MyJoystickController? myJoystickController;
-
   // マップ
   MapChip? mapChip;
-
   // フラグ
-  FlagModel flag = FlagModel();
+  FlagModel flag;
 
-  MyGameMain() : super();
+  CityScreen(this.flag);
 
   @override
   Future<void>? onLoad() async {
-    add(ScreenHitbox());
-
     // マップ
-    mapChip = MapChip("test.tmx", mySpriteSize, flag);
-    add(mapChip!);
+    mapChip = MapChip("city.tmx", mySpriteSize, flag);
+    await add(mapChip!); // 非同期処理にしないとエラー
 
     // プレイヤー初期化
     playerSprite = PlayerSprite("character/sample011.png", mySpriteSize);
-    add(playerSprite!);
-    playerSprite!.SetPos(Vector2(500, 300));
+    await add(playerSprite!);
+
+    playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
 
     // カメラの追尾対象を設定
     camera.followComponent(playerSprite!);
@@ -57,7 +44,7 @@ class MyGameMain extends FlameGame
         backgroundRadius: 100.0,
         backgroundPaint: BasicPalette.white.withAlpha(100).paint(),
         margin: const EdgeInsets.only(left: 40.0, bottom: 40.0));
-    add(myJoystickController!);
+    await add(myJoystickController!);
 
     await super.onLoad();
   }
@@ -65,11 +52,6 @@ class MyGameMain extends FlameGame
   @override
   void update(double dt) {
     super.update(dt);
-    // リスポーン
-    if (flag.testFlag) {
-      playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
-      flag.testFlag = false;
-    }
     playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
   }
 }

@@ -18,9 +18,11 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
   TiledComponent? mapComponent;
   // 壁
   MapWall? wall;
-  // リスポーン
+  // リスポーンオブジェクト
   MapRespawnObject? respawnObject;
+  // リスポーンポイント
   MapRespawnPoint? respawnPoint;
+
   FlagModel flag;
 
   MapChip(this.mapPath, this.spriteSize, this.flag);
@@ -29,8 +31,7 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
   Future<void>? onLoad() async {
     // マップタイル
     mapComponent = await TiledComponent.load(mapPath, spriteSize);
-    await add(mapComponent!);
-
+    add(mapComponent!);
     // 壁
     wall = MapWall(mapComponent!, spriteSize);
     add(wall!);

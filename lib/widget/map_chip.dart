@@ -6,6 +6,7 @@ import 'package:tiled/tiled.dart';
 import 'package:flame/palette.dart';
 
 import '../gloabal.dart';
+import 'map_door.dart';
 import 'map_wall.dart';
 
 class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
@@ -15,24 +16,29 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
   Vector2 spriteSize = Vector2(32.0, 32.0);
 
   // マップタイル
-  TiledComponent? mapTiled;
+  TiledComponent? mapComponent;
 
   // 壁
   MapWall? mapWall;
+
+// ドア
+  MapDoor? mapDoor;
 
   MapChip(this.mapPath, this.spriteSize);
 
   @override
   Future<void>? onLoad() async {
     // マップタイル
-    mapTiled = await TiledComponent.load(mapPath, spriteSize);
-    await add(mapTiled!);
+    mapComponent = await TiledComponent.load(mapPath, spriteSize);
+    await add(mapComponent!);
 
     // 壁
-    mapWall = MapWall(mapTiled!, spriteSize);
+    mapWall = MapWall(mapComponent!, spriteSize);
     add(mapWall!);
 
     // ドア
+    mapDoor = MapDoor(mapComponent!);
+    add(mapDoor!);
 
     await super.onLoad();
   }

@@ -109,14 +109,11 @@ class PlayerSprite extends SpriteAnimationComponent
   }
 
   /// 当たり判定コールバック
-  /// [intersectionPoints] 接触箇所
-  /// [other] 衝突した相手のオブジェクト
-
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     isCollisionHit = true;
+    // print(other);
     Vector2 dis = ((other.position) - (position)).normalized();
     position -= dis;
-    print("object");
   }
 }

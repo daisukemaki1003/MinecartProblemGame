@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screen/game_main.dart';
+import 'views/screen/game_main.dart';
 import 'widget_test.dart';
 
 void main() {

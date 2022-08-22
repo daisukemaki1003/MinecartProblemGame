@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
-import '../gloabal.dart';
+import '../../gloabal.dart';
+import '../../model/flag.dart';
 import '../widget/joystick_controller.dart';
 import '../widget/map_chip.dart';
 import '../widget/player_sprite.dart';
@@ -14,7 +15,6 @@ class GameMainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GameWidget(game: MyGameMain());
-    // return GameWidget(game: CirclesExample());
   }
 }
 
@@ -29,6 +29,9 @@ class MyGameMain extends FlameGame
   // マップ
   MapChip? mapChip;
 
+  // フラグ
+  FlagModel flag = FlagModel();
+
   MyGameMain() : super();
 
   @override
@@ -36,7 +39,7 @@ class MyGameMain extends FlameGame
     add(ScreenHitbox());
 
     // マップ
-    mapChip = MapChip("test.tmx", mySpriteSize);
+    mapChip = MapChip("test.tmx", mySpriteSize, flag);
     add(mapChip!);
 
     // プレイヤー初期化
@@ -62,6 +65,11 @@ class MyGameMain extends FlameGame
   @override
   void update(double dt) {
     super.update(dt);
+    // リスポーン
+    if (flag.testFlag) {
+      playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
+      flag.testFlag = false;
+    }
     playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
   }
 }

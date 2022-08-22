@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
-import '../gloabal.dart';
+import '../../gloabal.dart';
 
 class PlayerSprite extends SpriteAnimationComponent
     with HasGameRef, CollisionCallbacks {

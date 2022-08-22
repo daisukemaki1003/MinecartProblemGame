@@ -5,7 +5,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:tiled/tiled.dart';
 import 'package:flame/palette.dart';
 
-import '../gloabal.dart';
+import '../../gloabal.dart';
 
 class MapWall extends PositionComponent with HasGameRef, CollisionCallbacks {
   // マップタイル
@@ -47,8 +47,6 @@ class MapWall extends PositionComponent with HasGameRef, CollisionCallbacks {
               );
               add(rectangleHitbox);
 
-              // hitSprite.add(rectangleHitbox);
-              // add(hitSprite);
               // デバッグモード
               if (!isRelease) {
                 rectangleHitbox.renderShape = true;

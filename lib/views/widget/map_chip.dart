@@ -2,11 +2,11 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:frame_demo/model/flag.dart';
 import 'package:tiled/tiled.dart';
 import 'package:flame/palette.dart';
 
-import '../gloabal.dart';
-import 'map_door.dart';
+import 'map_respawn.dart';
 import 'map_wall.dart';
 
 class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
@@ -14,17 +14,16 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
   String mapPath = "";
   // 1フレームのスプライトサイズ
   Vector2 spriteSize = Vector2(32.0, 32.0);
-
   // マップタイル
   TiledComponent? mapComponent;
-
   // 壁
-  MapWall? mapWall;
+  MapWall? wall;
+  // リスポーン
+  MapRespawnObject? respawnObject;
+  MapRespawnPoint? respawnPoint;
+  FlagModel flag;
 
-// ドア
-  MapDoor? mapDoor;
-
-  MapChip(this.mapPath, this.spriteSize);
+  MapChip(this.mapPath, this.spriteSize, this.flag);
 
   @override
   Future<void>? onLoad() async {
@@ -33,12 +32,16 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
     await add(mapComponent!);
 
     // 壁
-    mapWall = MapWall(mapComponent!, spriteSize);
-    add(mapWall!);
+    wall = MapWall(mapComponent!, spriteSize);
+    add(wall!);
 
-    // ドア
-    mapDoor = MapDoor(mapComponent!);
-    add(mapDoor!);
+    // リスポーンオブジェクト
+    respawnObject = MapRespawnObject(mapComponent!, flag);
+    add(respawnObject!);
+
+    // リスポーン
+    respawnPoint = MapRespawnPoint(mapComponent!);
+    add(respawnPoint!);
 
     await super.onLoad();
   }

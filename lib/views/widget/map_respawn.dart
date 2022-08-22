@@ -2,19 +2,22 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:frame_demo/model/flag.dart';
 import 'package:tiled/tiled.dart';
 import 'package:flame/palette.dart';
 
-import '../gloabal.dart';
+import '../../gloabal.dart';
 
-class MapDoor extends PositionComponent with HasGameRef, CollisionCallbacks {
+class MapRespawnObject extends PositionComponent with HasGameRef, CollisionCallbacks {
   // マップタイル
   TiledComponent mapComponent;
+  FlagModel flag;
 
-  MapDoor(this.mapComponent);
+  MapRespawnObject(this.mapComponent, this.flag);
 
   @override
   Future<void>? onLoad() async {
+    // ドア
     final objGroup = mapComponent.tileMap.getLayer<ObjectGroup>('door_event');
     for (var obj in objGroup!.objects) {
       // ヒットボックス
@@ -33,8 +36,27 @@ class MapDoor extends PositionComponent with HasGameRef, CollisionCallbacks {
   }
 
   /// 当たり判定コールバック
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
-    print("object");
+    print("フラグ書き換え");
+    flag.testFlag = true;
+  }
+}
+
+class MapRespawnPoint extends PositionComponent with HasGameRef, CollisionCallbacks {
+  // マップタイル
+  TiledComponent mapComponent;
+  // リスポーン
+  Vector2? point;
+
+  MapRespawnPoint(this.mapComponent);
+
+  @override
+  Future<void>? onLoad() async {
+    // リスポーン
+    final objGroup = mapComponent.tileMap.getLayer<ObjectGroup>('respawn');
+    point = Vector2(objGroup!.objects[0].x, objGroup.objects[0].y);
+    print(point);
   }
 }

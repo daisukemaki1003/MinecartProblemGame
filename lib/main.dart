@@ -22,28 +22,30 @@ class MyApp extends StatelessWidget {
 
 class HomeScreen extends FlameGame
     with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
-  FlagModel flag = FlagModel();
-  CityScreen? city;
-  LakeScreen? lake;
+  FlagModel flag = FlagModel(testFlag: false);
+  CityScreen city = CityScreen(FlagModel());
+  LakeScreen lake = LakeScreen(FlagModel());
 
   @override
   Future<void>? onLoad() async {
     city = CityScreen(flag);
-    await add(city!);
+    await add(city);
+    // lake = LakeScreen(flag);
+    // await add(lake);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
     // スクリーンフラグ
-    if (flag.testFlag && lake!.isMounted) {
-      remove(lake!);
+    if (flag.testFlag && lake.isMounted) {
+      remove(lake);
       city = CityScreen(flag);
-      add(city!);
-    } else if (!flag.testFlag && city!.isMounted) {
-      remove(city!);
+      add(city);
+    } else if (!flag.testFlag && city.isMounted) {
+      remove(city);
       lake = LakeScreen(flag);
-      add(lake!);
+      add(lake);
     }
   }
 }

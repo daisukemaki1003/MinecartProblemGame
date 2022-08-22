@@ -61,11 +61,11 @@ class PlayerSprite extends SpriteAnimationComponent
       position: Vector2.zero(),
       size: spriteSize,
     );
+    add(hitBox);
     if (!isRelease) {
       hitBox.renderShape = true;
       hitBox.paint = BasicPalette.green.withAlpha(100).paint();
     }
-    add(hitBox);
 
     await super.onLoad();
   }
@@ -88,7 +88,7 @@ class PlayerSprite extends SpriteAnimationComponent
     position = pos;
   }
 
-  /// 移動させる
+  /// 移動モーション
   void SetMove(Vector2 v) {
     verocity = v;
 
@@ -110,9 +110,33 @@ class PlayerSprite extends SpriteAnimationComponent
   /// 当たり判定コールバック
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
-    isCollisionHit = true;
-    // print(other);
+    isCollisionHit = false;
+    print("object");
     Vector2 dis = ((other.position) - (position)).normalized();
-    position -= dis;
+    intersectionPoints.forEach((pos) {
+      Vector2 overlapDistance = Vector2.zero();
+      if (dis.x.abs() < dis.y.abs()) {
+        if ((position.y + spriteSize.y) > other.position.y &&
+            position.y < other.position.y) {
+          // 上
+          overlapDistance.y = (pos.y - other.position.y);
+        } else if (position.y < (other.position.y + other.size.y) &&
+            position.y > other.position.y) {
+          // 下
+          overlapDistance.y = (position.y - pos.y);
+        }
+      } else if (dis.x.abs() > dis.y.abs()) {
+        if ((position.x + spriteSize.x) > other.position.x &&
+            position.x < other.position.x) {
+          // 左
+          overlapDistance.x = (pos.x - other.position.x);
+        } else if (position.x < (other.position.x + other.size.x) &&
+            position.x > other.position.x) {
+          // 右
+          overlapDistance.x = (position.x - pos.x);
+        }
+      }
+      position -= overlapDistance;
+    });
   }
 }

@@ -29,6 +29,41 @@ flutter:
 
   assets:
     - assets/images/character/
+    - assets/tiles/city_B.tsx
+    - assets/tiles/city_C.tsx
+    - assets/tiles/city.tmx
+    - assets/tiles/myRoom.tmx
+    - assets/tiles/pika_nos_tiles01_A2.tsx
+    - assets/tiles/pika_nos_tiles01_A3.tsx
+    - assets/tiles/pika_nos_tiles01_A5.tsx
+    - assets/tiles/pika_nos_tiles01_B.tsx
+    - assets/tiles/pika_nos_tiles01_C.tsx
+    - assets/tiles/pika_nos_tiles01_D.tsx
+    - assets/tiles/pika_nos_tiles02_A5.tsx
+    - assets/tiles/pika_nos_tiles02_B.tsx
+    - assets/tiles/pika_nos_tiles02_C.tsx
+    - assets/tiles/SA-Dway01.tsx
+    - assets/tiles/ST-Park-E01.tsx
+    - assets/tiles/ST-Room-I01.tsx
+    - assets/tiles/ST-Schl-I01.tsx
+    - assets/tiles/ST-Sento-E01.tsx
+    - assets/tiles/ST-Toilet-I01.tsx
+    - assets/tiles/ST-Town-E01.tsx
+    - assets/tiles/ST-Town-I01.tsx
+    - assets/tiles/ST-Washitu-I01.tsx
+    - assets/tiles/tobira2_pipo-1.tsx
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_A2.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_A3.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_A5.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_B.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_C.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_D.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_A5.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_A5.tsx
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_B.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_B.tsx
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_C.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_C.tsx
     - assets/images/tiles/素材名：現代大通りマップチップ/city_B.png
     - assets/images/tiles/素材名：現代大通りマップチップ/city_C.png
     - assets/images/tiles/SA-Dway01.png
@@ -41,19 +76,3 @@ flutter:
     - assets/images/tiles/ST-Town-I01.png
     - assets/images/tiles/ST-Washitu-I01.png
     - assets/images/tiles/tobira2_pipo-1.png
-    - assets/tiles/myRoom.tmx
-    - assets/tiles/city_B.tsx
-    - assets/tiles/city_C.tsx
-    - assets/tiles/myRoom.tmx
-    - assets/tiles/SA-Dway01.tsx
-    - assets/tiles/ST-Park-E01.tsx
-    - assets/tiles/ST-Room-I01.tsx
-    - assets/tiles/ST-Schl-I01.tsx
-    - assets/tiles/ST-Sento-E01.tsx
-    - assets/tiles/ST-Toilet-I01.tsx
-    - assets/tiles/ST-Town-E01.tsx
-    - assets/tiles/ST-Town-I01.tsx
-    - assets/tiles/ST-Washitu-I01.tsx
-    - assets/tiles/tobira2_pipo-1.tsx
-
-

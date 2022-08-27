@@ -29,15 +29,31 @@ flutter:
 
   assets:
     - assets/images/character/
-    - assets/tiles/city.tmx
-    - assets/tiles/lake.tmx
-    - assets/images/tiles/未整理チップ1.png
-    - assets/images/tiles/pipo-map001_at-umi.png
-    - assets/images/tiles/pipo-map001.png
-    - assets/tiles/未整理チップ1.tsx
-    - assets/tiles/city.tsx
-    - assets/tiles/pipo-map001_at-umi.tsx
-    - assets/tiles/pipo-map001.tsx
-
+    - assets/images/tiles/素材名：現代大通りマップチップ/city_B.png
+    - assets/images/tiles/素材名：現代大通りマップチップ/city_C.png
+    - assets/images/tiles/SA-Dway01.png
+    - assets/images/tiles/ST-Park-E01.png
+    - assets/images/tiles/ST-Room-I01.png
+    - assets/images/tiles/ST-Schl-I01.png
+    - assets/images/tiles/ST-Sento-E01.png
+    - assets/images/tiles/ST-Toilet-I01.png
+    - assets/images/tiles/ST-Town-E01.png
+    - assets/images/tiles/ST-Town-I01.png
+    - assets/images/tiles/ST-Washitu-I01.png
+    - assets/images/tiles/tobira2_pipo-1.png
+    - assets/tiles/myRoom.tmx
+    - assets/tiles/city_B.tsx
+    - assets/tiles/city_C.tsx
+    - assets/tiles/myRoom.tmx
+    - assets/tiles/SA-Dway01.tsx
+    - assets/tiles/ST-Park-E01.tsx
+    - assets/tiles/ST-Room-I01.tsx
+    - assets/tiles/ST-Schl-I01.tsx
+    - assets/tiles/ST-Sento-E01.tsx
+    - assets/tiles/ST-Toilet-I01.tsx
+    - assets/tiles/ST-Town-E01.tsx
+    - assets/tiles/ST-Town-I01.tsx
+    - assets/tiles/ST-Washitu-I01.tsx
+    - assets/tiles/tobira2_pipo-1.tsx
 
 

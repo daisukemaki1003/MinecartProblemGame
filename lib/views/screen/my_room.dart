@@ -1,5 +1,4 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
+
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
@@ -11,7 +10,7 @@ import '../widget/joystick_controller.dart';
 import '../widget/map_chip.dart';
 import '../widget/player_sprite.dart';
 
-class LakeScreen extends FlameGame
+class MyRoom extends FlameGame
     with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
   // プレイヤー
   PlayerSprite? playerSprite;
@@ -22,15 +21,15 @@ class LakeScreen extends FlameGame
   // フラグ
   FlagModel flag;
 
-  LakeScreen(this.flag);
+  MyRoom(this.flag);
 
   @override
   Future<void>? onLoad() async {
     // マップ
-    mapChip = MapChip("lake.tmx", mySpriteSize, flag);
+    mapChip = MapChip("myRoom.tmx", mySpriteSize, flag);
     await add(mapChip!); // 非同期処理にしないとエラー
 
-    // プレイヤー初期化
+    // // プレイヤー初期化
     playerSprite = PlayerSprite("character/sample011.png", mySpriteSize);
     add(playerSprite!);
 
@@ -48,7 +47,7 @@ class LakeScreen extends FlameGame
         margin: const EdgeInsets.only(left: 40.0, bottom: 40.0));
     add(myJoystickController!);
 
-    super.onLoad();
+    await super.onLoad();
   }
 
   @override
@@ -60,5 +59,13 @@ class LakeScreen extends FlameGame
     //   flag.testFlag = false;
     // }
     playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
+  }
+
+  @override
+  @mustCallSuper
+  void onGameResize(Vector2 canvasSize) {
+    camera.handleResize(canvasSize);
+    super.onGameResize(canvasSize); // Game.onGameResize
+    handleResize(canvasSize);
   }
 }

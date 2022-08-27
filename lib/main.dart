@@ -1,11 +1,10 @@
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-import 'package:frame_demo/views/screen/city_screen.dart';
 
 import 'model/flag.dart';
 
-import 'views/screen/lake_screen.dart';
+import 'views/screen/my_room.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,29 +22,29 @@ class MyApp extends StatelessWidget {
 class HomeScreen extends FlameGame
     with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
   FlagModel flag = FlagModel(testFlag: false);
-  CityScreen city = CityScreen(FlagModel());
-  LakeScreen lake = LakeScreen(FlagModel());
+  // CityScreen city = CityScreen(FlagModel());
+  MyRoom? myRoom;
 
   @override
   Future<void>? onLoad() async {
-    city = CityScreen(flag);
-    await add(city);
-    // lake = LakeScreen(flag);
-    // await add(lake);
+    // city = CityScreen(flag);
+    // await add(city);
+    myRoom = MyRoom(flag);
+    await add(myRoom!);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
     // スクリーンフラグ
-    if (flag.testFlag && lake.isMounted) {
-      remove(lake);
-      city = CityScreen(flag);
-      add(city);
-    } else if (!flag.testFlag && city.isMounted) {
-      remove(city);
-      lake = LakeScreen(flag);
-      add(lake);
-    }
+    // if (flag.testFlag && myRoom.isMounted) {
+    //   remove(myRoom);
+    //   city = CityScreen(flag);
+    //   add(city);
+    // } else if (!flag.testFlag && city.isMounted) {
+    //   remove(city);
+    //   myRoom = MyRoom(flag);
+    //   add(myRoom);
+    // }
   }
 }

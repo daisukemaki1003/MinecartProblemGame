@@ -111,7 +111,6 @@ class PlayerSprite extends SpriteAnimationComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     isCollisionHit = false;
-    print("object");
     Vector2 dis = ((other.position) - (position)).normalized();
     intersectionPoints.forEach((pos) {
       Vector2 overlapDistance = Vector2.zero();

@@ -1,7 +1,10 @@
+import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 
-import 'screen/game_main.dart';
-import 'widget_test.dart';
+import 'model/flag.dart';
+
+import 'views/screen/my_room.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,40 +15,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
-    );
+    return GameWidget(game: HomeScreen());
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends FlameGame
+    with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
+  FlagModel flag = FlagModel(testFlag: false);
+  // CityScreen city = CityScreen(FlagModel());
+  MyRoom? myRoom;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          child: const Text(
-            "Start",
-            style: TextStyle(color: Colors.red),
-          ),
-          onPressed: () async {
-            await Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (context) {
-              if (true) {
-                return GameMainScreen();
-              } else {
-                return TestScreen();
-              }
-            }));
-          },
-        ),
-      ),
-    );
+  Future<void>? onLoad() async {
+    // city = CityScreen(flag);
+    // await add(city);
+    myRoom = MyRoom(flag);
+    await add(myRoom!);
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    // スクリーンフラグ
+    // if (flag.testFlag && myRoom.isMounted) {
+    //   remove(myRoom);
+    //   city = CityScreen(flag);
+    //   add(city);
+    // } else if (!flag.testFlag && city.isMounted) {
+    //   remove(city);
+    //   myRoom = MyRoom(flag);
+    //   add(myRoom);
+    // }
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
-import '../gloabal.dart';
+import '../../gloabal.dart';
 
 class PlayerSprite extends SpriteAnimationComponent
     with HasGameRef, CollisionCallbacks {
@@ -61,13 +61,12 @@ class PlayerSprite extends SpriteAnimationComponent
       position: Vector2.zero(),
       size: spriteSize,
     );
+    add(hitBox);
     if (!isRelease) {
       hitBox.renderShape = true;
       hitBox.paint = BasicPalette.green.withAlpha(100).paint();
     }
-    add(hitBox);
 
-    print("Load image : $imagePath");
     await super.onLoad();
   }
 
@@ -89,7 +88,7 @@ class PlayerSprite extends SpriteAnimationComponent
     position = pos;
   }
 
-  /// 移動させる
+  /// 移動モーション
   void SetMove(Vector2 v) {
     verocity = v;
 
@@ -109,14 +108,34 @@ class PlayerSprite extends SpriteAnimationComponent
   }
 
   /// 当たり判定コールバック
-  /// [intersectionPoints] 接触箇所
-  /// [other] 衝突した相手のオブジェクト
-
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
-    isCollisionHit = true;
+    isCollisionHit = false;
     Vector2 dis = ((other.position) - (position)).normalized();
-    position -= dis;
-    print("object");
+    intersectionPoints.forEach((pos) {
+      Vector2 overlapDistance = Vector2.zero();
+      if (dis.x.abs() < dis.y.abs()) {
+        if ((position.y + spriteSize.y) > other.position.y &&
+            position.y < other.position.y) {
+          // 上
+          overlapDistance.y = (pos.y - other.position.y);
+        } else if (position.y < (other.position.y + other.size.y) &&
+            position.y > other.position.y) {
+          // 下
+          overlapDistance.y = (position.y - pos.y);
+        }
+      } else if (dis.x.abs() > dis.y.abs()) {
+        if ((position.x + spriteSize.x) > other.position.x &&
+            position.x < other.position.x) {
+          // 左
+          overlapDistance.x = (pos.x - other.position.x);
+        } else if (position.x < (other.position.x + other.size.x) &&
+            position.x > other.position.x) {
+          // 右
+          overlapDistance.x = (position.x - pos.x);
+        }
+      }
+      position -= overlapDistance;
+    });
   }
 }

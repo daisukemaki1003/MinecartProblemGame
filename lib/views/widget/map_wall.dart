@@ -11,7 +11,7 @@ class MapWall extends PositionComponent with HasGameRef, CollisionCallbacks {
   // マップタイル
   TiledComponent mapComponent;
   // 1フレームのスプライトサイズ
-  Vector2 spriteSize = Vector2(32.0, 32.0);
+  Vector2 spriteSize;
 
   MapWall(this.mapComponent, this.spriteSize);
 

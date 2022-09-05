@@ -30,9 +30,9 @@ class CityScreen extends FlameGame
 
     // プレイヤー初期化
     playerSprite = PlayerSprite("character/sample011.png", mySpriteSize);
-    await add(playerSprite!);
-
-    playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
+    add(playerSprite!);
+    playerSprite!.SetPos(Vector2(530, 300));
+    // playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
 
     // カメラの追尾対象を設定
     camera.followComponent(playerSprite!);
@@ -50,8 +50,13 @@ class CityScreen extends FlameGame
   }
 
   @override
-  void update(double dt) {
+  void update(double dt) async {
     super.update(dt);
+    // リスポーン
+    // if (flag.testFlag) {
+    //   playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
+    //   flag.testFlag = false;
+    // }
     playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
   }
 }

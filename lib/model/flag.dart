@@ -3,3 +3,4 @@ class FlagModel {
 
   FlagModel({this.testFlag = false});
 }
+

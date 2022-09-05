@@ -15,7 +15,7 @@ class PlayerSprite extends SpriteAnimationComponent
   // モーションの切り替えタイミング
   double animationSpeed = 0.15;
   // 1フレームのスプライトサイズ
-  Vector2 spriteSize = Vector2(32, 32);
+  Vector2 spriteSize;
 
   // スプライト本体
   SpriteSheet? playerSprite;

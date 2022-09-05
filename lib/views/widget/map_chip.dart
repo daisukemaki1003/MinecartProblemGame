@@ -13,7 +13,7 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
   // マップパス
   String mapPath = "";
   // 1フレームのスプライトサイズ
-  Vector2 spriteSize = Vector2(32.0, 32.0);
+  Vector2 spriteSize;
   // マップタイル
   TiledComponent? mapComponent;
   // 壁
@@ -35,14 +35,13 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
     // 壁
     wall = MapWall(mapComponent!, spriteSize);
     add(wall!);
-
     // リスポーンオブジェクト
     respawnObject = MapRespawnObject(mapComponent!, flag);
-    add(respawnObject!);
+    // add(respawnObject!);
 
     // リスポーン
     respawnPoint = MapRespawnPoint(mapComponent!);
-    add(respawnPoint!);
+    // add(respawnPoint!);
 
     await super.onLoad();
   }

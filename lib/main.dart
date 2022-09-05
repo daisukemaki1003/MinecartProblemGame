@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'model/flag.dart';
 
+import 'views/screen/city.dart';
 import 'views/screen/my_room.dart';
 
 void main() {
@@ -21,30 +22,36 @@ class MyApp extends StatelessWidget {
 
 class HomeScreen extends FlameGame
     with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
+  /// フラグ
   FlagModel flag = FlagModel(testFlag: false);
-  // CityScreen city = CityScreen(FlagModel());
+
+  /// マップ
+  /// 商店街
+  CityScreen? city;
+
+  /// 自室
   MyRoom? myRoom;
 
   @override
   Future<void>? onLoad() async {
-    // city = CityScreen(flag);
-    // await add(city);
+    city = CityScreen(flag);
+    await add(city!);
     myRoom = MyRoom(flag);
-    await add(myRoom!);
+    // await add(myRoom!);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
     // スクリーンフラグ
-    // if (flag.testFlag && myRoom.isMounted) {
-    //   remove(myRoom);
+    // if (flag.testFlag && myRoom!.isMounted) {
+    //   remove(myRoom!);
     //   city = CityScreen(flag);
-    //   add(city);
-    // } else if (!flag.testFlag && city.isMounted) {
-    //   remove(city);
+    //   add(city!);
+    // } else if (!flag.testFlag && city!.isMounted) {
+    //   remove(city!);
     //   myRoom = MyRoom(flag);
-    //   add(myRoom);
+    //   add(myRoom!);
     // }
   }
 }

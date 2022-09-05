@@ -57,6 +57,7 @@ class CityScreen extends FlameGame
     //   playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
     //   flag.testFlag = false;
     // }
-    playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
+    playerSprite!.motion(myJoystickController!.getDirection());
+    // playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
   }
 }

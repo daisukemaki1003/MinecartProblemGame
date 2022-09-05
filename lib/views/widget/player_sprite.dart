@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
+import '../../constant/config.dart';
 import '../../gloabal.dart';
 
 class PlayerSprite extends SpriteAnimationComponent
@@ -18,18 +21,23 @@ class PlayerSprite extends SpriteAnimationComponent
   Vector2 spriteSize;
 
   // スプライト本体
-  SpriteSheet? playerSprite;
-  // 下向きモーション（画像差分）
-  SpriteAnimation? downSpriteAnimation;
-  // 左向きモーション（画像差分）
-  SpriteAnimation? leftSpriteAnimation;
-  // 右向きモーション（画像差分）
-  SpriteAnimation? rightSpriteAnimation;
-  // 上向きモーション（画像差分）
-  SpriteAnimation? upSpriteAnimation;
+  late SpriteSheet playerSprite;
 
-  // 移動速度
-  Vector2 verocity = Vector2.zero();
+  // 下向きモーション（画像差分）
+  late SpriteAnimation downSpriteAnimation;
+  // 左向きモーション（画像差分）
+  late SpriteAnimation leftSpriteAnimation;
+  // 右向きモーション（画像差分）
+  late SpriteAnimation rightSpriteAnimation;
+  // 上向きモーション（画像差分）
+  late SpriteAnimation upSpriteAnimation;
+
+  /// 移動速度
+  /// 32の約数
+  int movingDistance = 4;
+
+  /// 移動距離
+  Vector2 dis = Vector2.zero();
 
   // 当たり判定
   late RectangleHitbox hitBox;
@@ -46,13 +54,13 @@ class PlayerSprite extends SpriteAnimationComponent
 
     // モーション
     downSpriteAnimation =
-        playerSprite!.createAnimation(row: 0, stepTime: animationSpeed, to: 3);
+        playerSprite.createAnimation(row: 0, stepTime: animationSpeed, to: 3);
     leftSpriteAnimation =
-        playerSprite!.createAnimation(row: 1, stepTime: animationSpeed, to: 3);
+        playerSprite.createAnimation(row: 1, stepTime: animationSpeed, to: 3);
     rightSpriteAnimation =
-        playerSprite!.createAnimation(row: 2, stepTime: animationSpeed, to: 3);
+        playerSprite.createAnimation(row: 2, stepTime: animationSpeed, to: 3);
     upSpriteAnimation =
-        playerSprite!.createAnimation(row: 3, stepTime: animationSpeed, to: 3);
+        playerSprite.createAnimation(row: 3, stepTime: animationSpeed, to: 3);
     animation = downSpriteAnimation;
     size = spriteSize;
 
@@ -74,12 +82,9 @@ class PlayerSprite extends SpriteAnimationComponent
   @override
   void update(double dt) {
     super.update(dt);
-    // 移動
-    if (isCollisionHit == false) {
-      position += verocity;
-    }
-    verocity = Vector2.zero();
-    isCollisionHit = false;
+
+    /// 移動
+    move();
   }
 
   /// 座標を変更する
@@ -88,23 +93,61 @@ class PlayerSprite extends SpriteAnimationComponent
     position = pos;
   }
 
-  /// 移動モーション
-  void SetMove(Vector2 v) {
-    verocity = v;
-
-    if (v.x.abs() > v.y.abs()) {
-      if (v.x > 0.0) {
-        animation = rightSpriteAnimation;
-      } else if (v.x < 0.0) {
-        animation = leftSpriteAnimation;
-      }
-    } else {
-      if (v.y < 0.0) {
-        animation = upSpriteAnimation;
-      } else if (v.y > 0.0) {
-        animation = downSpriteAnimation;
+  void move() {
+    if (dis != Vector2.zero()) {
+      if (dis.x != 0) {
+        /// X軸移動
+        if (dis.x > 0) {
+          // 右
+          position.x += movingDistance;
+          dis.x -= movingDistance;
+        } else {
+          // 左
+          position.x -= movingDistance;
+          dis.x += movingDistance;
+        }
+      } else {
+        /// Y軸移動
+        if (dis.y > 0) {
+          // 上
+          position.y += movingDistance;
+          dis.y -= movingDistance;
+        } else {
+          // 下
+          position.y -= movingDistance;
+          dis.y += movingDistance;
+        }
       }
     }
+  }
+
+  /// 移動一マスずつ + モーション
+  void motion(DirectionOfTravel direction) {
+    Vector2 distance_buf = Vector2.zero();
+
+    switch (direction) {
+      case DirectionOfTravel.up: // 上
+        animation = upSpriteAnimation;
+        distance_buf = Vector2(0, -32);
+        break;
+      case DirectionOfTravel.right: // 右
+        animation = rightSpriteAnimation;
+        distance_buf = Vector2(32, 0);
+        break;
+      case DirectionOfTravel.down: // 下
+        animation = downSpriteAnimation;
+        distance_buf = Vector2(0, 32);
+        break;
+      case DirectionOfTravel.left: // 左
+        animation = leftSpriteAnimation;
+        distance_buf = Vector2(-32, 0);
+        break;
+      default:
+        return;
+    }
+
+    /// 移動距離をバッファーに格納
+    if (dis == Vector2.zero()) dis = distance_buf;
   }
 
   /// 当たり判定コールバック

@@ -65,6 +65,6 @@ class MyRoom extends FlameGame
     //   playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
     //   flag.testFlag = false;
     // }
-    playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
+    // playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
   }
 }

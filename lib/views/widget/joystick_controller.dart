@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 
 import 'package:flutter/material.dart';
+import 'package:frame_demo/constant/config.dart';
 
 /// ジョイスティック操作管理
 class MyJoystickController extends JoystickComponent {
@@ -29,11 +30,35 @@ class MyJoystickController extends JoystickComponent {
   Vector2 GetValue() {
     Vector2 value = Vector2.zero();
     if (delta.x != 0.0) {
+      // print("x: " + (delta.x / backgroundRadius).toString());
       value.x = delta.x / backgroundRadius;
     }
     if (delta.y != 0.0) {
+      // print("y: " + (delta.y / backgroundRadius).toString());
       value.y = delta.y / backgroundRadius;
     }
     return value;
+  }
+
+  /// 進行方向を取得
+  DirectionOfTravel getDirection() {
+    // 移動してない
+    if (delta.x == 0.0 && delta.y == 0.0) {
+      return DirectionOfTravel.none;
+    }
+    // 移動
+    if (delta.x.abs() < delta.y.abs()) {
+      if (delta.y < 0) {
+        return DirectionOfTravel.up;
+      } else {
+        return DirectionOfTravel.down;
+      }
+    } else {
+      if (delta.x < 0) {
+        return DirectionOfTravel.left;
+      } else {
+        return DirectionOfTravel.right;
+      }
+    }
   }
 }

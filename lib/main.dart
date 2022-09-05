@@ -22,8 +22,14 @@ class MyApp extends StatelessWidget {
 
 class HomeScreen extends FlameGame
     with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
+  /// フラグ
   FlagModel flag = FlagModel(testFlag: false);
+
+  /// マップ
+  /// 商店街
   CityScreen? city;
+
+  /// 自室
   MyRoom? myRoom;
 
   @override
@@ -38,14 +44,14 @@ class HomeScreen extends FlameGame
   void update(double dt) {
     super.update(dt);
     // スクリーンフラグ
-    if (flag.testFlag && myRoom!.isMounted) {
-      remove(myRoom!);
-      city = CityScreen(flag);
-      add(city!);
-    } else if (!flag.testFlag && city!.isMounted) {
-      remove(city!);
-      myRoom = MyRoom(flag);
-      add(myRoom!);
-    }
+    // if (flag.testFlag && myRoom!.isMounted) {
+    //   remove(myRoom!);
+    //   city = CityScreen(flag);
+    //   add(city!);
+    // } else if (!flag.testFlag && city!.isMounted) {
+    //   remove(city!);
+    //   myRoom = MyRoom(flag);
+    //   add(myRoom!);
+    // }
   }
 }

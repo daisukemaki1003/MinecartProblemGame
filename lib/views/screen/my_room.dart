@@ -36,14 +36,14 @@ class MyRoom extends FlameGame
     playerSprite = PlayerSprite("character/sample011.png", mySpriteSize);
     add(playerSprite!);
 
-    // playerSprite!.SetPos(Vector2(390.0, 844.0));
-    playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
+    playerSprite!.SetPos(Vector2(0, 0));
+    // playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
 
     // カメラの追尾対象を設定
-    // camera.followComponent(playerSprite!);
+    camera.followComponent(playerSprite!);
     // camera.followVector2(Vector2(100, 500));
-    viewPortController = ViewPortController(camera);
-    viewPortController!.setTrackedTarget(playerSprite!);
+    // viewPortController = ViewPortController(camera);
+    // viewPortController!.setTrackedTarget(playerSprite!);
 
     // コントーローラー
     myJoystickController = MyJoystickController(
@@ -60,11 +60,11 @@ class MyRoom extends FlameGame
   @override
   void update(double dt) async {
     super.update(dt);
-    // リスポーン
-    if (flag.testFlag) {
-      playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
-      flag.testFlag = false;
-    }
+    // // リスポーン
+    // if (flag.testFlag) {
+    //   playerSprite!.SetPos(mapChip!.respawnPoint!.point!);
+    //   flag.testFlag = false;
+    // }
     playerSprite!.SetMove((myJoystickController!.GetValue() * 10.0));
   }
 }

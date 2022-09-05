@@ -34,7 +34,7 @@ class MapChip extends PositionComponent with HasGameRef, CollisionCallbacks {
     add(mapComponent!);
     // 壁
     wall = MapWall(mapComponent!, spriteSize);
-    // add(wall!);
+    add(wall!);
     // リスポーンオブジェクト
     respawnObject = MapRespawnObject(mapComponent!, flag);
     // add(respawnObject!);

@@ -1,11 +1,11 @@
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
+
 import 'package:flutter/material.dart';
 
-import 'model/flag.dart';
-
-import 'views/screen/city.dart';
-import 'views/screen/my_room.dart';
+import 'controller/map/map_controller.dart';
+import 'controller/player/player_controller.dart';
+import 'presentation/view_model/game_screen.dart';
+import 'presentation/views/main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,42 +16,47 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(game: HomeScreen());
+    // return MaterialApp(home: Test());
+    return MaterialApp(home: Test());
   }
 }
 
-class HomeScreen extends FlameGame
-    with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
-  /// フラグ
-  FlagModel flag = FlagModel(testFlag: false);
-
-  /// マップ
-  /// 商店街
-  CityScreen? city;
-
-  /// 自室
-  MyRoom? myRoom;
+class Test extends StatelessWidget {
+  PlayerController playerController = PlayerController();
+  GameScreenModel gameScreenModel = GameScreenModel();
+  MapController mapController = MapController();
 
   @override
-  Future<void>? onLoad() async {
-    city = CityScreen(flag);
-    await add(city!);
-    myRoom = MyRoom(flag);
-    // await add(myRoom!);
-  }
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("title"),
+      ),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  /// Get map
+                  mapController.load(0);
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-    // スクリーンフラグ
-    // if (flag.testFlag && myRoom!.isMounted) {
-    //   remove(myRoom!);
-    //   city = CityScreen(flag);
-    //   add(city!);
-    // } else if (!flag.testFlag && city!.isMounted) {
-    //   remove(city!);
-    //   myRoom = MyRoom(flag);
-    //   add(myRoom!);
-    // }
+                  /// Get player
+                  playerController.create(
+                      "name", "character/player2.png", Vector2(32, 32));
+                  playerController.getDtail();
+
+                  /// view
+                  return GameWidget(game: MainScreen(gameScreenModel));
+                },
+              ),
+            );
+          },
+          child: const Text("push"),
+        ),
+      ),
+    );
+    // return GameWidget(game: MainScreen());
   }
 }

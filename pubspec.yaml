@@ -16,6 +16,8 @@ dependencies:
   tiled: 0.8.4
   flame_tiled: ^1.7.2
   flutter_riverpod: ^1.0.4
+  uuid: ^3.0.6
+  dashbook: ^0.1.10
 
 
 dev_dependencies:
@@ -77,3 +79,5 @@ flutter:
     - assets/images/tiles/ST-Town-I01.png
     - assets/images/tiles/ST-Washitu-I01.png
     - assets/images/tiles/tobira2_pipo-1.png
+
+    - assets/images/animations/chopper.png

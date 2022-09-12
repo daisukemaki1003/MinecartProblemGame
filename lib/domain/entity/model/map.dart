@@ -1,18 +1,12 @@
-class Map {
+import 'event.dart';
+
+class MapModel {
   /// マップパス
   final String _imagePath;
+  final List<EventModel> _events;
 
-  // late List<EventObj> _eventObjectList;
-
-  Map(this._imagePath);
+  MapModel(this._imagePath, this._events);
 
   String get imagePath => _imagePath;
-
-  // /// イベントを追加
-  // addEventObj(flag, position, objectSize) {
-  //   EventObj obj = EventObj(flag, position, objectSize);
-  //   _eventObjectList.add(obj);
-  // }
-
-  /// event検索
+  List<EventModel> get events => _events;
 }

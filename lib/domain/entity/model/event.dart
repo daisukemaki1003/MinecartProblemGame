@@ -1,13 +1,13 @@
-class Event {
+class EventModel {
   /// フラグ
   bool _flag;
-  String _name;
+  final String _name;
 
-  Event(this._flag, this._name);
+  EventModel(this._flag, this._name);
 
   bool get flag => _flag;
   String get name => _name;
 
   /// フラグ書き換え
-  rewriteFlag() => _flag = !_flag;
+  rewrite() => _flag = !_flag;
 }

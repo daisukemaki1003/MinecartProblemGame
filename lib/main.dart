@@ -1,12 +1,10 @@
 import 'package:flame/game.dart';
 
 import 'package:flutter/material.dart';
+import 'package:frame_demo/presentation/controller/map_transition_controller.dart';
 
-import 'controller/event/event.dart';
-import 'controller/map/map_controller.dart';
-import 'controller/player/player_controller.dart';
-import 'presentation/view_model/game_screen.dart';
-import 'presentation/views/main.dart';
+import 'presentation/controller/game_load_controller.dart';
+import 'presentation/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,9 +20,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MainScreen extends StatelessWidget {
-  PlayerController playerController = PlayerController();
-  MapController mapController = MapController();
-  EventController eventController = EventController();
+  GameLoadController gameLoadController = GameLoadController();
+  MapTransitionController mapTransitionController = MapTransitionController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +36,11 @@ class MainScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  /// Get map
-                  mapController.load(0);
-
-                  /// Create event
-                  eventController.load(0);
-
-                  /// Get player
-                  playerController.create(
-                      "name", "character/player2.png", Vector2(32, 32));
-                  playerController.getDtail();
+                  gameLoadController.handle();
+                  mapTransitionController.handle("room_to_city");
 
                   /// view
-                  return GameWidget(game: GameScreen(GameScreenModel()));
+                  return GameWidget(game: GameScreen());
                 },
               ),
             );

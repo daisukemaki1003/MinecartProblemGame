@@ -2,6 +2,7 @@ import 'package:flame/game.dart';
 
 import 'package:flutter/material.dart';
 
+import 'controller/event/event.dart';
 import 'controller/map/map_controller.dart';
 import 'controller/player/player_controller.dart';
 import 'presentation/view_model/game_screen.dart';
@@ -16,21 +17,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(home: Test());
-    return MaterialApp(home: Test());
+    return MaterialApp(home: MainScreen());
   }
 }
 
-class Test extends StatelessWidget {
+class MainScreen extends StatelessWidget {
   PlayerController playerController = PlayerController();
-  GameScreenModel gameScreenModel = GameScreenModel();
   MapController mapController = MapController();
+  EventController eventController = EventController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("title"),
+        title: const Text("title"),
       ),
       body: Center(
         child: TextButton(
@@ -42,13 +42,16 @@ class Test extends StatelessWidget {
                   /// Get map
                   mapController.load(0);
 
+                  /// Create event
+                  eventController.load(0);
+
                   /// Get player
                   playerController.create(
                       "name", "character/player2.png", Vector2(32, 32));
                   playerController.getDtail();
 
                   /// view
-                  return GameWidget(game: MainScreen(gameScreenModel));
+                  return GameWidget(game: GameScreen(GameScreenModel()));
                 },
               ),
             );

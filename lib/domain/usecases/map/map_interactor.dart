@@ -6,7 +6,7 @@ import 'map_usecase.dart';
 
 class MapInteractor implements MapUseCase {
   @override
-  String testMapPath = "city.tmx";
+  String testMapPath = "myRoom.tmx";
 
   MapLoadPresenter mapLoadPresenter = MapLoadPresenter();
 

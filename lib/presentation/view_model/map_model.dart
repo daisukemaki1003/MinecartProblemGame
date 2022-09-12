@@ -3,26 +3,28 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 class MapModel extends PositionComponent with HasGameRef, CollisionCallbacks {
-  // マップパス
+  /// マップパス
   final String _mapPath;
-  // // 1フレームのスプライトサイズ
-  // final Vector2 _spriteSize;
-  // マップタイル
-  late TiledComponent mapComponent;
+
+  /// マップタイル
+  late TiledComponent _tiledComponent;
+  TiledComponent get tiledComponent => _tiledComponent;
 
   MapModel(this._mapPath);
 
   @override
   Future<void>? onLoad() async {
-    // マップタイル
-    mapComponent = await TiledComponent.load(_mapPath, Vector2(32, 32));
-    await add(mapComponent);
+    /// マップタイル
+    _tiledComponent = await TiledComponent.load(_mapPath, Vector2(32, 32));
+    await add(_tiledComponent);
+
+    // /// イベント
+    // for (var event in _eventObjModel.events) {
+    //   final objectGroup =
+    //       tiledComponent.tileMap.getLayer<ObjectGroup>(event.name);
+    //   print(objectGroup!.name);
+    // }
+
     await super.onLoad();
   }
-
-  // /// 更新処理
-  // @override
-  // void update(double dt) {
-  //   super.update(dt);
-  // }
 }

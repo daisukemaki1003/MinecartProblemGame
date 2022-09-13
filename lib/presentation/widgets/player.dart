@@ -43,6 +43,8 @@ class MyPlayerSprite extends SpriteAnimationComponent
     // スプライト画像
     playerSprite = SpriteSheet(
         image: await gameRef.images.load(_imagePath), srcSize: spriteSize);
+
+    /// ポジション
     position = _position;
 
     // モーション
@@ -62,7 +64,7 @@ class MyPlayerSprite extends SpriteAnimationComponent
       position: Vector2.zero(),
       size: spriteSize,
     );
-    add(hitBox);
+    await add(hitBox);
 
     await super.onLoad();
   }

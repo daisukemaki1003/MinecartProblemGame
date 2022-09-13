@@ -6,5 +6,5 @@ import 'map_transition_output.dart';
 abstract class MapTransitionUseCase
     implements UseCase<MapTransitionInputData, MapTransitionOutputData> {
   @override
-  handle(MapTransitionInputData inputData);
+  MapTransitionOutputData handle(MapTransitionInputData inputData);
 }

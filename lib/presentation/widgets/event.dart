@@ -1,7 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:frame_demo/domain/i_preseter/map_transition_presenter.dart';
+import 'package:frame_demo/domain/i_presenter/map_transition_presenter.dart';
 import 'package:frame_demo/presentation/preseter/map_transition_presenter.dart';
 import 'package:tiled/tiled.dart';
 

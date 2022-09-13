@@ -22,8 +22,10 @@ class MyJoystickController extends JoystickComponent {
       Paint? backgroundPaint,
       EdgeInsets? margin})
       : super(
-          background:
-              CircleComponent(radius: backgroundRadius, paint: backgroundPaint),
+          background: CircleComponent(
+            radius: backgroundRadius,
+            paint: backgroundPaint,
+          ),
           knob: CircleComponent(radius: knobRadius, paint: knobPaint),
           margin: margin,
         );

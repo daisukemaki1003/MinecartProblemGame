@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:frame_demo/presentation/preseter/game_load_presenter.dart';
 import 'package:frame_demo/presentation/preseter/map_transition_presenter.dart';
 
-import 'domain/i_preseter/game_load_presenter.dart';
-import 'domain/i_preseter/map_transition_presenter.dart';
+import 'domain/i_presenter/game_load_presenter.dart';
+import 'domain/i_presenter/map_transition_presenter.dart';
 
 import 'presentation/pages/main_page.dart';
 

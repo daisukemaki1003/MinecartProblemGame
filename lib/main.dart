@@ -1,9 +1,11 @@
 import 'package:flame/game.dart';
-
 import 'package:flutter/material.dart';
-import 'package:frame_demo/presentation/controller/map_transition_controller.dart';
+import 'package:frame_demo/presentation/preseter/game_load_presenter.dart';
+import 'package:frame_demo/presentation/preseter/map_transition_presenter.dart';
 
-import 'presentation/controller/game_load_controller.dart';
+import 'domain/i_preseter/game_load_presenter.dart';
+import 'domain/i_preseter/map_transition_presenter.dart';
+
 import 'presentation/pages/main_page.dart';
 
 void main() {
@@ -20,8 +22,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MainScreen extends StatelessWidget {
-  GameLoadController gameLoadController = GameLoadController();
-  MapTransitionController mapTransitionController = MapTransitionController();
+  GameLoadPresenter gameLoadPresenter = GameLoadPresenterImpl();
+  MapTransitionPresenter mapTransitionPresenter = MapTransitionPresenterImpl();
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,8 @@ class MainScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  gameLoadController.handle();
-                  mapTransitionController.handle("room_to_city");
+                  gameLoadPresenter.handle();
+                  // mapTransitionPresenter.handle("room_to_city");
 
                   /// view
                   return GameWidget(game: GameScreen());
@@ -49,6 +51,5 @@ class MainScreen extends StatelessWidget {
         ),
       ),
     );
-    // return GameWidget(game: MainScreen());
   }
 }

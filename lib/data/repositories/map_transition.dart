@@ -1,6 +1,6 @@
 import 'package:frame_demo/domain/entity/model/map.dart';
 
-import '../../domain/repositories/map_transition.dart';
+import '../../domain/i_repositories/map_transition.dart';
 
 class MapTransitionRepositoryImpl implements MapTransitionRepository {
   @override

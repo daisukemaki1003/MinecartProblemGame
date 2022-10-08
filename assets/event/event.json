@@ -1,0 +1,7 @@
+{
+  "map": ["myRoom.tmx", "city.tmx"],
+  "obj": [{
+    "id": 0,
+    "name": "child"
+  }]
+}

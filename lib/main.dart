@@ -1,11 +1,12 @@
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
+import 'package:frame_demo/presentation/preseter/game_load_presenter.dart';
+import 'package:frame_demo/presentation/preseter/map_transition_presenter.dart';
 
-import 'model/flag.dart';
+import 'domain/i_presenter/game_load_presenter.dart';
+import 'domain/i_presenter/map_transition_presenter.dart';
 
-import 'views/screen/city.dart';
-import 'views/screen/my_room.dart';
+import 'presentation/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,42 +17,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(game: HomeScreen());
+    return MaterialApp(home: MainScreen());
   }
 }
 
-class HomeScreen extends FlameGame
-    with DoubleTapDetector, HasTappables, HasDraggables, HasCollisionDetection {
-  /// フラグ
-  FlagModel flag = FlagModel(testFlag: false);
-
-  /// マップ
-  /// 商店街
-  CityScreen? city;
-
-  /// 自室
-  MyRoom? myRoom;
+class MainScreen extends StatelessWidget {
+  GameLoadPresenter gameLoadPresenter = GameLoadPresenterImpl();
+  MapTransitionPresenter mapTransitionPresenter = MapTransitionPresenterImpl();
 
   @override
-  Future<void>? onLoad() async {
-    city = CityScreen(flag);
-    await add(city!);
-    myRoom = MyRoom(flag);
-    // await add(myRoom!);
-  }
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("title"),
+      ),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  gameLoadPresenter.handle();
+                  // mapTransitionPresenter.handle("room_to_city");
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-    // スクリーンフラグ
-    // if (flag.testFlag && myRoom!.isMounted) {
-    //   remove(myRoom!);
-    //   city = CityScreen(flag);
-    //   add(city!);
-    // } else if (!flag.testFlag && city!.isMounted) {
-    //   remove(city!);
-    //   myRoom = MyRoom(flag);
-    //   add(myRoom!);
-    // }
+                  /// view
+                  return GameWidget(game: GameScreen());
+                },
+              ),
+            );
+          },
+          child: const Text("push"),
+        ),
+      ),
+    );
   }
 }

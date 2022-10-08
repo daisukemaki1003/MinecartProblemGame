@@ -1,6 +1,12 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:frame_demo/presentation/preseter/game_load_presenter.dart';
+import 'package:frame_demo/presentation/preseter/map_transition_presenter.dart';
 
-import 'screen/game_main.dart';
+import 'domain/i_presenter/game_load_presenter.dart';
+import 'domain/i_presenter/map_transition_presenter.dart';
+
+import 'presentation/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,32 +17,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
-    );
+    return MaterialApp(home: MainScreen());
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+  GameLoadPresenter gameLoadPresenter = GameLoadPresenterImpl();
+  MapTransitionPresenter mapTransitionPresenter = MapTransitionPresenterImpl();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("title"),
+      ),
       body: Center(
         child: TextButton(
-          child: const Text(
-            "Start",
-            style: TextStyle(color: Colors.red),
-          ),
-          onPressed: () async {
-            await Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => GameMainScreen()));
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  gameLoadPresenter.handle();
+                  // mapTransitionPresenter.handle("room_to_city");
+
+                  /// view
+                  return GameWidget(game: GameScreen());
+                },
+              ),
+            );
           },
+          child: const Text("push"),
         ),
       ),
     );

@@ -11,9 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  frame: ^1.0.2
   cupertino_icons: ^1.0.2
-  flame: ^1.2.1
+  flame: ^1.3.0
+  tiled: 0.8.4
+  flame_tiled: ^1.7.2
+  flutter_riverpod: ^1.0.4
+  equatable: ^2.0.5
+  dartz: ^0.10.1
+
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +31,51 @@ flutter:
 
   assets:
     - assets/images/character/
+    - assets/tiles/city.tmx
+    - assets/tiles/myRoom.tmx
+    - assets/tiles/city_B.tsx
+    - assets/tiles/city_C.tsx
+    - assets/tiles/pika_nos_tiles_cus_B1.tsx
+    - assets/tiles/pika_nos_tiles01_A2.tsx
+    - assets/tiles/pika_nos_tiles01_A3.tsx
+    - assets/tiles/pika_nos_tiles01_A5.tsx
+    - assets/tiles/pika_nos_tiles01_B.tsx
+    - assets/tiles/pika_nos_tiles01_C.tsx
+    - assets/tiles/pika_nos_tiles01_D.tsx
+    - assets/tiles/pika_nos_tiles02_A5.tsx
+    - assets/tiles/pika_nos_tiles02_B.tsx
+    - assets/tiles/pika_nos_tiles02_C.tsx
+    - assets/tiles/SA-Dway01.tsx
+    - assets/tiles/ST-Park-E01.tsx
+    - assets/tiles/ST-Room-I01.tsx
+    - assets/tiles/ST-Schl-I01.tsx
+    - assets/tiles/ST-Sento-E01.tsx
+    - assets/tiles/ST-Toilet-I01.tsx
+    - assets/tiles/ST-Town-E01.tsx
+    - assets/tiles/ST-Town-I01.tsx
+    - assets/tiles/ST-Washitu-I01.tsx
+    - assets/tiles/tobira2_pipo-1.tsx
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_A2.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_A3.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_A5.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_B.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_C.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles01_D.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_A5.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_B.png
+    - assets/images/tiles/ノスタルジータイルセット【街並みセット1】/tilesets/pika_nos_tiles02_C.png
+    - assets/images/tiles/ノスタルジータイルセット【商店街拡張セット】/tilesets/pika_nos_tiles_cus_B1.png
+    - assets/images/tiles/ノスタルジータイルセット【商店街拡張セット】/tilesets/pika_nos_tiles01_A2.png
+    - assets/images/tiles/ノスタルジータイルセット【商店街拡張セット】/tilesets/pika_nos_tiles01_A3.png
+    - assets/images/tiles/素材名：現代大通りマップチップ/city_B.png
+    - assets/images/tiles/素材名：現代大通りマップチップ/city_C.png
+    - assets/images/tiles/SA-Dway01.png
+    - assets/images/tiles/ST-Park-E01.png
+    - assets/images/tiles/ST-Room-I01.png
+    - assets/images/tiles/ST-Schl-I01.png
+    - assets/images/tiles/ST-Sento-E01.png
+    - assets/images/tiles/ST-Toilet-I01.png
+    - assets/images/tiles/ST-Town-E01.png
+    - assets/images/tiles/ST-Town-I01.png
+    - assets/images/tiles/ST-Washitu-I01.png
+    - assets/images/tiles/tobira2_pipo-1.png

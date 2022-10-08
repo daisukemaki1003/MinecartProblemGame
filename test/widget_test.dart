@@ -1,30 +1,78 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
+import 'package:flame/game.dart';
+import 'package:flame/input.dart';
+import 'package:flutter/material.dart' hide Image, Draggable;
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+class CirclesExample extends FlameGame with HasCollisionDetection, TapDetector {
+  static const description = '''
+    This example will create a circle every time you tap on the screen. It will
+    have the initial velocity towards the center of the screen and if it touches
+    another circle both of them will change color.
+  ''';
 
-import 'package:frame_demo/main.dart';
+  @override
+  Future<void> onLoad() async {
+    add(ScreenHitbox());
+  }
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  @override
+  void onTapDown(TapDownInfo info) {
+    add(MyCollidable(info.eventPosition.game));
+  }
+}
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+class MyCollidable extends PositionComponent
+    with HasGameRef<CirclesExample>, CollisionCallbacks {
+  late Vector2 velocity;
+  final _collisionColor = Colors.amber;
+  final _defaultColor = Colors.cyan;
+  late ShapeHitbox hitbox;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  MyCollidable(Vector2 position)
+      : super(
+          position: position,
+          size: Vector2.all(100),
+          anchor: Anchor.center,
+        );
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  @override
+  Future<void> onLoad() async {
+    final defaultPaint = Paint()
+      ..color = _defaultColor
+      ..style = PaintingStyle.stroke;
+    hitbox = CircleHitbox()
+      ..paint = defaultPaint
+      ..renderShape = true;
+    add(hitbox);
+    final center = gameRef.size / 2;
+    velocity = (center - position)..scaleTo(150);
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    position.add(velocity * dt);
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+    hitbox.paint.color = _collisionColor;
+    if (other is ScreenHitbox) {
+      removeFromParent();
+      return;
+    }
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    super.onCollisionEnd(other);
+    if (!isColliding) {
+      hitbox.paint.color = _defaultColor;
+    }
+  }
 }

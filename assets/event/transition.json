@@ -1,0 +1,95 @@
+{
+  "events": [{
+      "event_id": 0,
+      "objects": [{
+        "myRoom": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }],
+        "city": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }]
+      }]
+    },
+    {
+      "event_id": 1,
+      "objects": [{
+        "myRoom": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }],
+        "city": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }]
+      }]
+    }, {
+      "event_id": 2,
+      "objects": [{
+        "myRoom": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }],
+        "city": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }]
+      }]
+    }, {
+      "event_id": 3,
+      "objects": [{
+        "myRoom": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }],
+        "city": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }]
+      }]
+    }, {
+      "event_id": 4,
+      "objects": [{
+        "myRoom": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }],
+        "city": [{
+          "id": 0,
+          "name": ""
+        }, {
+          "id": 0,
+          "name": ""
+        }]
+      }]
+    }
+  ]
+}
